@@ -16,6 +16,8 @@ Tiempo_espera = [(0, 0)]
 while clock <= end_time:
     fel = sorted(fel, key=lambda e: e['t'])
     current_event = fel.pop(0)
+    previous_q = Q
+    previous_clock = clock
     clock = current_event['t']
 
     if current_event['Type'] == 'Llegada':
@@ -39,5 +41,5 @@ while clock <= end_time:
         else:
             Cajero = 0
 
-    lq.append((clock, Q))
+    lq.append((clock, Q, previous_clock, clock-previous_clock, previous_q))
     Tiempo_espera.append(())
